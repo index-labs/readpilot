@@ -10,7 +10,9 @@ export const config = {
 
 const handler = async (req: NextRequest): Promise<Response> => {
   if (req.method !== "POST") {
-    return new Response("Method not allowed", { status: 405 });
+    return new Response(JSON.stringify({ msg: "Method is not allowed." }), {
+      status: 405,
+    });
   }
 
   const { url } = (await req.json()) as {
@@ -18,7 +20,9 @@ const handler = async (req: NextRequest): Promise<Response> => {
   };
 
   if (!url) {
-    return new Response("Invalid request", { status: 400 });
+    return new Response(JSON.stringify({ msg: "Invalid request" }), {
+      status: 400,
+    });
   }
 
   const prompt = `Generate 5 questions based on the content of the link: ${url}`;
