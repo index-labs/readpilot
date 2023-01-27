@@ -1,27 +1,90 @@
-# Next.js + Tailwind CSS Example
+<a href="https://precedent.dev">
+  <img alt="Precedent – Building blocks for your Next project" src="https://precedent.dev/api/og">
+  <h1 align="center">Precedent</h1>
+</a>
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+<p align="center">
+  Building blocks for your Next project
+</p>
 
-## Deploy your own
+<p align="center">
+  <a href="https://twitter.com/steventey">
+    <img src="https://img.shields.io/twitter/follow/steventey?style=flat&label=steventey&logo=twitter&color=0bf&logoColor=fff" alt="Steven Tey Twitter follower count" />
+  </a>
+  <a href="https://github.com/steven-tey/precedent">
+    <img src="https://img.shields.io/github/stars/steven-tey/precedent?label=steven-tey%2Fprecedent" alt="Precedent repo star count" />
+  </a>
+</p>
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+<p align="center">
+  <a href="#introduction"><strong>Introduction</strong></a> ·
+  <a href="#one-click-deploy"><strong>One-click Deploy</strong></a> ·
+  <a href="#tech-stack--features"><strong>Tech Stack + Features</strong></a> ·
+  <a href="#author"><strong>Author</strong></a>
+</p>
+<br/>
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## Introduction
 
-## How to use
+Precedent is an opinionated collection of components, hooks, and utilities for your Next.js project.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## One-click Deploy
+
+You can deploy this template to Vercel with the button below:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsteven-tey%2Fprecedent&project-name=precedent&repository-name=precedent&demo-title=Precedent&demo-description=An%20opinionated%20collection%20of%20components%2C%20hooks%2C%20and%20utilities%20for%20your%20Next%20project.&demo-url=https%3A%2F%2Fprecedent.dev&demo-image=https%3A%2F%2Fprecedent.dev%2Fapi%2Fog&env=DATABASE_URL,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,NEXTAUTH_SECRET&envDescription=How%20to%20get%20these%20env%20variables%3A&envLink=https%3A%2F%2Fgithub.com%2Fsteven-tey%2Fprecedent%2Fblob%2Fmain%2F.env.example)
+
+You can also clone & create this repo locally with the following command:
 
 ```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
+npx create-next-app precedent --example "https://github.com/steven-tey/precedent"
 ```
 
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+## Tech Stack + Features
 
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
+https://user-images.githubusercontent.com/28986134/212368288-12f41e37-aa8c-4e0a-a542-cf6d23410a65.mp4
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### Frameworks
+
+- [Next.js](https://nextjs.org/) – React framework for building performant apps with the best developer experience
+- [Auth.js](https://authjs.dev/) – Handle user authentication with ease with providers like Google, Twitter, GitHub, etc.
+- [Prisma](https://www.prisma.io/) – Typescript-first ORM for Node.js
+
+### Platforms
+
+- [Vercel](https://vercel.com/) – Easily preview & deploy changes with git
+- [Railway](https://railway.app/) – Easily provision a PostgreSQL database (no login required)
+
+### UI
+
+- [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS framework for rapid UI development
+- [Radix](https://www.radix-ui.com/) – Primitives like modal, popover, etc. to build a stellar user experience
+- [Framer Motion](https://framer.com/motion) – Motion library for React to animate components with ease
+- [Lucide](https://lucide.dev/) – Beautifully simple, pixel-perfect icons
+- [`@next/font`](https://nextjs.org/docs/basic-features/font-optimization) – Optimize custom fonts and remove external network requests for improved performance
+- [`@vercel/og`](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation) – Generate dynamic Open Graph images on the edge
+- [`react-wrap-balancer`](https://github.com/shuding/react-wrap-balancer) – Simple React component that makes titles more readable
+
+### Hooks and Utilities
+
+- `useIntersectionObserver` –  React hook to observe when an element enters or leaves the viewport
+- `useLocalStorage` – Persist data in the browser's local storage
+- `useScroll` – React hook to observe scroll position ([example](https://github.com/steven-tey/precedent/blob/main/components/layout/index.tsx#L25))
+- `nFormatter` – Format numbers with suffixes like `1.2k` or `1.2M`
+- `capitalize` – Capitalize the first letter of a string
+- `truncate` – Truncate a string to a specified length
+- [`use-debounce`](https://www.npmjs.com/package/use-debounce) – Debounce a function call / state update
+
+### Code Quality
+
+- [TypeScript](https://www.typescriptlang.org/) – Static type checker for end-to-end typesafety
+- [Prettier](https://prettier.io/) – Opinionated code formatter for consistent code style
+- [ESLint](https://eslint.org/) – Pluggable linter for Next.js and TypeScript
+
+### Miscellaneous
+
+- [Vercel Analytics](https://vercel.com/analytics) – Track unique visitors, pageviews, and more in a privacy-friendly way
+
+## Author
+
+- Steven Tey ([@steventey](https://twitter.com/steventey))
