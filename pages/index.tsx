@@ -11,12 +11,35 @@ export default function Home() {
   const [url, setUrl] = useState("");
   const [showGeneratedCards, setShowGeneratedCards] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState([]);
 
   const generateCards = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    setShowGeneratedCards(true);
+    setResults([]);
+
+    const response = await fetch("/api/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url }),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then((responseJson) => {
+        console.log(responseJson);
+        setResults(responseJson.data);
+        setShowGeneratedCards(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     setLoading(false);
   };
 
@@ -123,8 +146,8 @@ export default function Home() {
 
         {showGeneratedCards && (
           <div className="my-10 grid w-full max-w-screen-xl animate-[slide-down-fade_0.5s_ease-in-out] grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
-            {features.map(({ title, description }) => (
-              <Card key={title} title={title} description={description} />
+            {results.map(({ q, a }) => (
+              <Card key={q} title={q} description={a} />
             ))}
           </div>
         )}
@@ -132,22 +155,3 @@ export default function Home() {
     </Layout>
   );
 }
-
-const features = [
-  {
-    title: "What does it mean for a product to be horizontal?",
-    description:
-      "A horizontal product is one that can be used by people from all walks of life and not just those in a specific profession or field. ",
-  },
-  {
-    title:
-      "What advantages does a vertical product have over a horizontal product?",
-    description:
-      "Vertical products have an easier time finding customers because they can target a specific profession or field and know where to advertise and which conventions to attend. Additionally, vertical products have higher margins because their users are professionals who will be willing to pay for a solution to their problems.",
-  },
-  {
-    title: "What did the author learn from visiting Excel customers?",
-    description:
-      "The author learned that most people were using Excel not for calculations but for creating tables. This helped him understand why Lotus Improv, which was designed for calculations, had failed. He realized that the great horizontal killer applications are actually just fancy data structures.",
-  },
-];
