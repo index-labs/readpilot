@@ -15,6 +15,13 @@ export default function Home() {
 
   const generateCards = async (e: any) => {
     e.preventDefault();
+
+    // TODO(jiayuan): refactor this later
+    if (url === "") {
+      console.log("Please enter a valid URL");
+      return;
+    }
+
     setLoading(true);
     setResults([]);
 
@@ -115,9 +122,11 @@ export default function Home() {
               <input
                 type="url"
                 placeholder="Input your link"
-                required
                 value={url}
-                onChange={(e) => setUrl(e.target.value)}
+                onChange={(e) => {
+                  setUrl((e.target as HTMLInputElement).value);
+                }}
+                required
                 className="block w-full rounded-2xl border border-gray-200 bg-white p-2 pl-12 text-lg text-gray-600 shadow-md focus:border-black focus:outline-none focus:ring-0"
               />
             </div>
