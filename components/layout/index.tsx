@@ -49,13 +49,14 @@ export default function Layout({
           <div>
             <AnimatePresence>
               {!session && status !== "loading" ? (
-                <motion.button
+                <motion.a
                   className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
-                  onClick={() => setShowSignInModal(true)}
+                  href="https://twitter.com/Tisoga"
+                  target="_blank"
                   {...FADE_IN_ANIMATION_SETTINGS}
                 >
                   Subscribe
-                </motion.button>
+                </motion.a>
               ) : (
                 <UserDropdown />
               )}
