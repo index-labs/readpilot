@@ -11,3 +11,5 @@
 ## Introduction
 
 Read Pilot analyzes online articles and generate Q&A cards for you.
+
+![](./screenshot.png)
