@@ -8,29 +8,53 @@ const handler = async (req: NextRequest) => {
   const { url } = (await req.json()) as { url: string };
 
   if (!url) {
-    return new Response(JSON.stringify({ msg: "URL is empty" }), {
+    return new Response(JSON.stringify({ msg: "URL is empty", data: [] }), {
       status: 400,
     });
   }
 
-  const result = [
-    {
-      q: "What does it mean for a product to be horizontal?",
-      a: "A horizontal product is one that can be used by people from all walks of life and not just those in a specific profession or field. ",
-    },
-    {
-      q: "What advantages does a vertical product have over a horizontal product?",
-      a: "Vertical products have an easier time finding customers because they can target a specific profession or field and know where to advertise and which conventions to attend. Additionally, vertical products have higher margins because their users are professionals who will be willing to pay for a solution to their problems.",
-    },
-    {
-      q: "What did the author learn from visiting Excel customers?",
-      a: "The author learned that most people were using Excel not for calculations but for creating tables. This helped him understand why Lotus Improv, which was designed for calculations, had failed. He realized that the great horizontal killer applications are actually just fancy data structures.",
-    },
-  ];
+  const prompt = `
+  Generate a list of thought provoking discussion questions about the URL, and return the answers of these questions with the evidence.
 
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  Please generate a JSON list object with the following properties: q and a. q and a should be string. q is the question. a is the answer.
 
-  return new Response(JSON.stringify({ data: result }));
+  The URL is: ${url}
+  `;
+
+  const payload = {
+    model: "text-davinci-003",
+    prompt,
+    temperature: 0.7,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    max_tokens: 500,
+    stream: false,
+    n: 1,
+  };
+
+  const res = await fetch("https://api.openai.com/v1/completions", {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY ?? ""}`,
+    },
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    return new Response(JSON.stringify({ msg: "OpenAI API error", data: [] }), {
+      status: 500,
+    });
+  }
+
+  const { choices } = await res.json();
+  const { text } = choices[0];
+  const rawData = text.trimStart().replace(/^Output: /, "");
+  console.log(rawData);
+  const results = JSON.parse(rawData);
+
+  return new Response(JSON.stringify({ data: results }));
 };
 
 export default handler;
