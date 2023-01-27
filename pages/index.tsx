@@ -73,7 +73,7 @@ export default function Home() {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <a
-              href="https://twitter.com/Tisoga"
+              href="https://twitter.com/Tisoga/status/1618903666290982912"
               target="_blank"
               rel="noreferrer"
               className="mx-auto mb-5 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full bg-blue-100 px-7 py-2 transition-colors hover:bg-blue-200"
