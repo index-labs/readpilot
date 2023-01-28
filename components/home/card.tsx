@@ -11,7 +11,7 @@ export default function Card({
 }) {
   return (
     <div className="relative col-span-1 h-96 overflow-hidden rounded-xl border border-gray-200 bg-white px-5 py-8 shadow-md">
-      <div className="mx-auto max-w-md text-center">
+      <div className="mx-auto max-w-md text-center overflow-y-scroll h-full">
         <h2 className="bg-gradient-to-br from-black to-stone-500 bg-clip-text font-display text-xl font-bold text-transparent md:text-3xl md:font-normal">
           <Balancer>{title}</Balancer>
         </h2>
