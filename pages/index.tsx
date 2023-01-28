@@ -116,6 +116,15 @@ export default function Home() {
             </Balancer>
           </motion.p>
 
+          <motion.p
+            className="mt-6 text-center text-black text-xl"
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+          >
+            <Balancer>
+                <span className="font-bold bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text text-transparent">2225</span> Users Analyzed <span className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text text-transparent font-bold">3186</span> Articles
+            </Balancer>
+          </motion.p>
+
           <motion.div className="mt-10" variants={FADE_DOWN_ANIMATION_VARIANTS}>
             <div className="relative flex w-[35rem] items-center justify-center">
               <LinkIcon className="insert-y-1 w absolute left-0 my-3 ml-3 w-7 text-gray-500" />
