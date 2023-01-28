@@ -121,7 +121,7 @@ export default function Home() {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
-              <span className="font-bold bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text text-transparent">2808</span> Users Analyzed <span className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text text-transparent font-bold">3892</span> Articles
+              <span className="font-bold bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text text-transparent">3005</span> Users Analyzed <span className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text text-transparent font-bold">4154</span> Articles
             </Balancer>
           </motion.p>
 
