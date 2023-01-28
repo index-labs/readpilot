@@ -5,11 +5,9 @@
 <p align="center">
     Read Online Articles With Intelligence
 </p>
-
-<br/>
-
-## Introduction
-
-Read Pilot analyzes online articles and generate Q&A cards for you.
-
-![](./screenshot.png)
+<p align="center">
+  Read Pilot analyzes online articles and generate Q&A cards for you.
+</p>
+<p align="center">
+ <img src="./screenshot.png" />
+</p>
