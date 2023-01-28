@@ -156,7 +156,7 @@ export default function Home() {
                 disabled
               >
                 <span>Analyzing </span>
-                <LoadingDots color="white" />
+                <LoadingDots color="grey" />
               </button>
             )}
           </motion.div>
