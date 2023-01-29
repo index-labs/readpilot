@@ -69,7 +69,7 @@ export default function Home() {
           }}
         >
           <motion.div
-            className="mobile:flex-col flex justify-between space-x-5"
+            className="flex justify-between space-x-5"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <a
@@ -95,10 +95,10 @@ export default function Home() {
           </motion.div>
 
           <motion.h1
-            className="mobile:w-full mt-6 w-[1024px] bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
+            className="mt-6 w-[1024px] bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
-            <Balancer className="mobile:!max-w-full">
+            <Balancer>
               Read Online Articles With
               <br />
               <span className="bg-co bg-gradient-to-r from-blue-500 via-green-600 to-indigo-500 bg-clip-text text-transparent">
@@ -117,7 +117,7 @@ export default function Home() {
           </motion.p>
 
           <motion.p
-            className="mobile:w-full mt-6 w-[1024px] text-center text-xl text-black"
+            className="mt-6 w-[1024px] text-center text-xl text-black"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
@@ -133,7 +133,7 @@ export default function Home() {
           </motion.p>
 
           <motion.div className="mt-10" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <div className="relative flex w-[35rem] mobile:w-full items-center justify-center">
+            <div className="relative flex w-[35rem] items-center justify-center">
               <LinkIcon className="insert-y-1 w absolute left-0 my-3 ml-3 w-7 text-gray-500" />
               <input
                 type="url"
@@ -151,7 +151,7 @@ export default function Home() {
           <motion.div className="mt-8" variants={FADE_DOWN_ANIMATION_VARIANTS}>
             {!loading && (
               <button
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black mobile:text-sm md:text-xl"
+                className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
                 onClick={(e) => generateCards(e)}
               >
                 Start Analyzing →
@@ -159,7 +159,7 @@ export default function Home() {
             )}
             {loading && (
               <button
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black mobile:text-sm md:text-xl"
+                className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
                 disabled
               >
                 <span>Analyzing </span>
