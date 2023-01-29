@@ -64,7 +64,7 @@ export default function Layout({
           </div>
         </div>
       </div>
-      <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+      <main className="flex min-h-screen w-full flex-col items-center justify-center py-32 mobile:pt-24">
         {children}
       </main>
       <div className="absolute w-full border-t border-gray-200 bg-white py-5 text-center">
