@@ -117,7 +117,7 @@ export default function Home() {
           </motion.p>
 
           <motion.p
-            className="mt-6 text-center text-xl text-black"
+            className="mt-6 w-[1024px] text-center text-xl text-black"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
