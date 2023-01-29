@@ -122,11 +122,11 @@ export default function Home() {
           >
             <Balancer>
               <span className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent">
-                3720
+                4456
               </span>{" "}
               Users Analyzed{" "}
               <span className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent">
-                5223
+                6234
               </span>{" "}
               Articles
             </Balancer>
