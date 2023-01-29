@@ -117,11 +117,18 @@ export default function Home() {
           </motion.p>
 
           <motion.p
-            className="mt-6 text-center text-black text-xl"
+            className="mt-6 text-center text-xl text-black"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
-              <span className="font-bold bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text text-transparent">3005</span> Users Analyzed <span className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text text-transparent font-bold">4154</span> Articles
+              <span className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent">
+                3720
+              </span>{" "}
+              Users Analyzed{" "}
+              <span className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent">
+                5223
+              </span>{" "}
+              Articles
             </Balancer>
           </motion.p>
 
