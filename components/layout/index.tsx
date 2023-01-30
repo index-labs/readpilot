@@ -6,8 +6,6 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import useScroll from "@/lib/hooks/use-scroll";
 import Meta from "./meta";
-import { useSignInModal } from "./sign-in-modal";
-import UserDropdown from "./user-dropdown";
 
 export default function Layout({
   meta,
@@ -21,7 +19,6 @@ export default function Layout({
   children: ReactNode;
 }) {
   const { data: session, status } = useSession();
-  const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
 
   return (
@@ -48,7 +45,7 @@ export default function Layout({
           </Link>
           <div>
             <AnimatePresence>
-              {!session && status !== "loading" ? (
+              {!session && status !== "loading"}
                 <motion.a
                   className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
                   href="https://twitter.com/Tisoga"
@@ -57,9 +54,6 @@ export default function Layout({
                 >
                   Subscribe
                 </motion.a>
-              ) : (
-                <UserDropdown />
-              )}
             </AnimatePresence>
           </div>
         </div>

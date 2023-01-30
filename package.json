@@ -44,6 +44,7 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
     "@types/ms": "^0.7.31",
+    "@whop-sdk/core": "^0.0.3",
     "autoprefixer": "^10.4.13",
     "concurrently": "^7.6.0",
     "postcss": "^8.4.21",
