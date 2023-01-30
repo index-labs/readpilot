@@ -1,10 +1,10 @@
 import Head from "next/head";
 
 // TODO(jiayuan): Change this
-const DOMAIN = "https://precedent.dev";
+const DOMAIN = "https://readpilot.vercel.app";
 
 export default function Meta({
-  title = "Read Pilot - Unlock the power of your oneline reading",
+  title = "Read Pilot - Unlock the power of your online reading",
   description = "Read Pilot analyzes online articles and generate Q&A cards for you.",
   image = `${DOMAIN}/api/og`,
 }: {
@@ -27,8 +27,8 @@ export default function Meta({
       <meta property="og:image" content={image} />
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@vercel" />
-      <meta name="twitter:creator" content="@steventey" />
+      <meta name="twitter:site" content="@Tisoga" />
+      <meta name="twitter:creator" content="@Tisoga" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
