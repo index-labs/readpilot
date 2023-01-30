@@ -23,20 +23,17 @@ type PassGatedProps =
       membership: Membership;
       pass: null;
       plan: null;
-      user: null;
     }
   | {
       membership: null;
       pass: AccessPass;
       plan: Plan;
-      user: null;
     };
 
 export default function Home(props: PassGatedProps) {
   const membership = props.membership;
   const pass = props.pass;
   const plan = props.plan;
-  const user = props.user;
   const link = usePurchaseLink(RECOMMENDED_PLAN);
 
   const [url, setUrl] = useState("");
@@ -45,7 +42,7 @@ export default function Home(props: PassGatedProps) {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    if (!membership && user) {
+    if (!membership) {
       setUrl(link);
     }
   }, [membership, link]);
@@ -157,65 +154,42 @@ export default function Home(props: PassGatedProps) {
               you.
             </Balancer>
           </motion.p>
-          {membership ? (
-            <>
-              <motion.div
-                className="mt-10"
-                variants={FADE_DOWN_ANIMATION_VARIANTS}
-              >
-                <div className="relative flex w-[35rem] items-center justify-center">
-                  <LinkIcon className="insert-y-1 w absolute left-0 my-3 ml-3 w-7 text-gray-500" />
-                  <input
-                    type="url"
-                    placeholder="Input your link"
-                    value={url}
-                    onChange={(e) => {
-                      setUrl((e.target as HTMLInputElement).value);
-                    }}
-                    required
-                    className="block w-full rounded-2xl border border-gray-200 bg-white p-2 pl-12 text-lg text-gray-600 shadow-md focus:border-black focus:outline-none focus:ring-0"
-                  />
-                </div>
-              </motion.div>
 
-              <motion.div
-                className="mt-8"
-                variants={FADE_DOWN_ANIMATION_VARIANTS}
+          <motion.div className="mt-10" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            <div className="relative flex w-[35rem] items-center justify-center">
+              <LinkIcon className="insert-y-1 w absolute left-0 my-3 ml-3 w-7 text-gray-500" />
+              <input
+                type="url"
+                placeholder="Input your link"
+                value={url}
+                onChange={(e) => {
+                  setUrl((e.target as HTMLInputElement).value);
+                }}
+                required
+                className="block w-full rounded-2xl border border-gray-200 bg-white p-2 pl-12 text-lg text-gray-600 shadow-md focus:border-black focus:outline-none focus:ring-0"
+              />
+            </div>
+          </motion.div>
+
+          <motion.div className="mt-8" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            {!loading && (
+              <button
+                className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
+                onClick={(e) => generateCards(e)}
               >
-                {!loading && (
-                  <button
-                    className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
-                    onClick={(e) => generateCards(e)}
-                  >
-                    Start Analyzing →
-                  </button>
-                )}
-                {loading && (
-                  <button
-                    className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
-                    disabled
-                  >
-                    <span>Analyzing </span>
-                    <LoadingDots color="grey" />
-                  </button>
-                )}
-              </motion.div>
-            </>
-          ) : (
-            <motion.div
-              className="mt-8"
-              variants={FADE_DOWN_ANIMATION_VARIANTS}
-            >
-              {!loading && (
-                <button
-                  className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
-                  onClick={() => signIn("whop")}
-                >
-                  Get Access →
-                </button>
-              )}
-            </motion.div>
-          )}
+                Start Analyzing →
+              </button>
+            )}
+            {loading && (
+              <button
+                className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
+                disabled
+              >
+                <span>Analyzing </span>
+                <LoadingDots color="grey" />
+              </button>
+            )}
+          </motion.div>
         </motion.div>
 
         {showGeneratedCards && (
@@ -231,46 +205,43 @@ export default function Home(props: PassGatedProps) {
 }
 
 export const getServerSideProps: GetServerSideProps<PassGatedProps> = async ({
-  req,
-  res,
-}) => {
-  const { sdk } = await getSdk(req, res);
-  if (!sdk)
-    return {
-      props: {
-        membership: null,
-        user: null,
-      },
-    };
-  const user = await sdk.retrieveProfile({});
-  const membership = await findPass(sdk, ALLOWED_PASS);
-  if (membership)
-    return {
-      props: {
-        membership,
-        pass: null,
-        plan: null,
-        user: user,
-      },
-    };
-  else {
-    const [pass, plan] = await Promise.all([
-      ServerSDK.accessPasses.retrieveAccessPass({
-        whopCompany: process.env.WHOP_COMPANY_ID || "",
-        id: ALLOWED_PASS,
-      }),
-      ServerSDK.plans.retrievePlan({
-        whopCompany: process.env.WHOP_COMPANY_ID || "",
-        id: RECOMMENDED_PLAN,
-      }),
-    ]);
-    return {
-      props: {
-        membership: null,
-        pass,
-        plan,
-        user: user,
-      },
-    };
-  }
-};
+    req,
+    res,
+  }) => {
+    const { sdk } = await getSdk(req, res);
+    if (!sdk)
+      return {
+        redirect: {
+          destination: "/get-started",
+          permanent: false,
+        },
+      };
+    const membership = await findPass(sdk, ALLOWED_PASS);
+    if (membership)
+      return {
+        props: {
+          membership,
+          pass: null,
+          plan: null,
+        },
+      };
+    else {
+      const [pass, plan] = await Promise.all([
+        ServerSDK.accessPasses.retrieveAccessPass({
+            whopCompany: process.env.WHOP_COMPANY_ID || "",
+          id: ALLOWED_PASS,
+        }),
+        ServerSDK.plans.retrievePlan({
+          whopCompany: process.env.WHOP_COMPANY_ID || "",
+          id: RECOMMENDED_PLAN,
+        }),
+      ]);
+      return {
+        props: {
+          membership: null,
+          pass,
+          plan,
+        },
+      };
+    }
+  };
