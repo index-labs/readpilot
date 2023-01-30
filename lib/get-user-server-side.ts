@@ -11,7 +11,7 @@ const getServerSideProps: GetServerSideProps<UserProps> = async ({
   res,
 }) => {
   const { sdk } = await getSdk(req, res);
-  const user = await sdk?.retrieveProfile({});
+  const user = await sdk?.retrieveProfile();
   return {
     props: {
       user: user || null,
