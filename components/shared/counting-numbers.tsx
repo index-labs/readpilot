@@ -30,7 +30,7 @@ export default function CountingNumbers({
     requestAnimationFrame(animateCount);
   }, [value, duration]);
 
-  return <p className={className}>{Intl.NumberFormat().format(count)}</p>;
+  return <span className={className}>{Intl.NumberFormat().format(count)}</span>;
 }
 const easeOutQuad = (t: number, b: number, c: number, d: number) => {
   t /= d;

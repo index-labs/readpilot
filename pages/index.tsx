@@ -6,6 +6,7 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 import { Github, LoadingDots, Twitter } from "@/components/shared/icons";
 import { useState } from "react";
 import LinkIcon from "@/components/shared/icons/link";
+import CountingNumbers from "@/components/shared/counting-numbers";
 
 export default function Home() {
   const [url, setUrl] = useState("");
@@ -121,13 +122,9 @@ export default function Home() {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
-              <span className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent">
-                5980
-              </span>{" "}
+              <CountingNumbers value={6920} duration={1000} className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent" />{" "}
               Users Analyzed{" "}
-              <span className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent">
-                8204
-              </span>{" "}
+              <CountingNumbers value={9504} duration={1000} className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent" />{" "}
               Articles
             </Balancer>
           </motion.p>
