@@ -24,7 +24,6 @@ const handler = async (req: NextRequest) => {
     },
     body: JSON.stringify({
       url: url,
-      openai_api_key: `${process.env.OPENAI_API_KEY}`,
     }),
   });
 
