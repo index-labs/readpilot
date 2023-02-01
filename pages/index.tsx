@@ -123,9 +123,17 @@ export default function Home() {
           >
             <Balancer>
               Trusted by{" "}
-              <CountingNumbers value={7173} duration={1000} className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent" />{" "}
-              users, {" "}
-              <CountingNumbers value={9830} duration={1000} className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent" />{" "}
+              <CountingNumbers
+                value={7451}
+                duration={1000}
+                className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent"
+              />{" "}
+              users,{" "}
+              <CountingNumbers
+                value={10219}
+                duration={1000}
+                className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent"
+              />{" "}
               links have been analyzed.
             </Balancer>
           </motion.p>
