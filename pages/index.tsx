@@ -122,10 +122,11 @@ export default function Home() {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
-              <CountingNumbers value={6920} duration={1000} className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent" />{" "}
-              Users Analyzed{" "}
-              <CountingNumbers value={9504} duration={1000} className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent" />{" "}
-              Articles
+              Trusted by{" "}
+              <CountingNumbers value={7173} duration={1000} className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent" />{" "}
+              users, {" "}
+              <CountingNumbers value={9830} duration={1000} className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent" />{" "}
+              links have been analyzed.
             </Balancer>
           </motion.p>
 
