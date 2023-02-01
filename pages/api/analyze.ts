@@ -14,7 +14,7 @@ const handler = async (req: NextRequest) => {
   }
 
   const backendDomain = process.env.BACKEND_DOMAIN as string;
-  const apiUrl = `${backendDomain}/api/v1/pipepilot/analyze_url`;
+  const apiUrl = `${backendDomain}/api/v1/readpilot/analyze_url`;
 
   const res = await fetch(apiUrl, {
     method: "POST",
@@ -27,7 +27,7 @@ const handler = async (req: NextRequest) => {
     }),
   });
 
-  if (res.status != 200 || !res.ok) {
+  if (res.status != 200) {
     console.log(`[analyze.ts] Pipe3 API error: ${res}`);
     return new Response(JSON.stringify({ msg: "Pipe3 API error", data: [] }), {
       status: 500,
