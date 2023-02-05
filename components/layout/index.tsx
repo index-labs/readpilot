@@ -1,4 +1,4 @@
-import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
+import { FADE_IN_ANIMATION_SETTINGS, READ_PILOT_TOKEN } from "@/lib/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -6,8 +6,10 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import useScroll from "@/lib/hooks/use-scroll";
 import Meta from "./meta";
-import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
+import { useGoogleLogin } from "@react-oauth/google";
+import { usePilotStore } from "@/lib/store";
+import { googleLogin } from "service.ts/request";
 
 export default function Layout({
   meta,
@@ -20,9 +22,21 @@ export default function Layout({
   };
   children: ReactNode;
 }) {
-  const { data: session, status } = useSession();
-  const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
+  const { authToken, setAuthToken } = usePilotStore((state) => state);
+  const login = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const res = await googleLogin({
+          access_token: tokenResponse.access_token,
+        });
+        localStorage.setItem(READ_PILOT_TOKEN, res.data.access);
+        setAuthToken(res.data.access);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });
 
   return (
     <>
@@ -46,17 +60,26 @@ export default function Layout({
             ></Image>
             <p>Read Pilot</p>
           </Link>
-          <div>
+          <div className="flex items-center">
             <AnimatePresence>
-              {!session && status !== "loading" ? (
-                <motion.a
+              <motion.a
+                className="mr-2 rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
+                href="https://twitter.com/Tisoga"
+                target="_blank"
+                {...FADE_IN_ANIMATION_SETTINGS}
+              >
+                Subscribe
+              </motion.a>
+              {!authToken ? (
+                <motion.button
                   className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
-                  href="https://twitter.com/Tisoga"
-                  target="_blank"
                   {...FADE_IN_ANIMATION_SETTINGS}
+                  onClick={() => {
+                    login();
+                  }}
                 >
-                  Subscribe
-                </motion.a>
+                  Sign in
+                </motion.button>
               ) : (
                 <UserDropdown />
               )}
