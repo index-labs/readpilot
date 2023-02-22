@@ -27,7 +27,7 @@ export default function Layout({
   return (
     <>
       <Meta {...meta} />
-      <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
+      <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-100 via-white to-cyan-50" />
       <div
         className={`fixed top-0 w-full ${
           scrolled
@@ -38,13 +38,13 @@ export default function Layout({
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
           <Link href="/" className="flex items-center font-display text-2xl">
             <Image
-              src="/logo.png"
-              alt="Precedent logo"
+              src="/robot.png"
+              alt="Copilot Hub logo"
               width="30"
               height="30"
               className="mr-2 rounded-sm"
             ></Image>
-            <p>Read Pilot</p>
+            <p>Copilot Hub</p>
           </Link>
           <div>
             <AnimatePresence>
@@ -55,7 +55,7 @@ export default function Layout({
                   target="_blank"
                   {...FADE_IN_ANIMATION_SETTINGS}
                 >
-                  Subscribe
+                  Login
                 </motion.a>
               ) : (
                 <UserDropdown />

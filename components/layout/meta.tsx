@@ -1,11 +1,11 @@
 import Head from "next/head";
 
 // TODO(jiayuan): Change this
-const DOMAIN = "https://readpilot.vercel.app";
+const DOMAIN = "https://copilothub.co";
 
 export default function Meta({
-  title = "Read Pilot - Unlock the power of your online reading",
-  description = "Read Pilot analyzes online articles and generate Q&A cards for you.",
+  title = "Copilot Hub - The AI assistant community building the future.",
+  description = "Copilot Hub helps you build your ChatGPT assistant with your own data in minutes",
   image = `${DOMAIN}/api/og`,
 }: {
   title?: string;
