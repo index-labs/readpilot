@@ -4,52 +4,40 @@ import Balancer from "react-wrap-balancer";
 import { motion } from "framer-motion";
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 import { Github, LoadingDots, Twitter } from "@/components/shared/icons";
-import { useState } from "react";
-import LinkIcon from "@/components/shared/icons/link";
-import CountingNumbers from "@/components/shared/counting-numbers";
 
 export default function Home() {
-  const [url, setUrl] = useState("");
-  const [showGeneratedCards, setShowGeneratedCards] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState([]);
-
-  const generateCards = async (e: any) => {
-    e.preventDefault();
-
-    // TODO(jiayuan): refactor this later
-    if (url === "") {
-      console.log("Please enter a valid URL");
-      return;
-    }
-
-    setLoading(true);
-    setResults([]);
-
-    const response = await fetch("/api/analyze", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ url }),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          return res.json();
-        }
-        throw new Error("Something went wrong");
-      })
-      .then((responseJson) => {
-        console.log(responseJson);
-        setResults(responseJson.data);
-        setShowGeneratedCards(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    setLoading(false);
-  };
+  const results = [
+    {
+      title: "Ask Startup Class",
+      description:
+        "This AI trained by the startup class of Y Combinator: How to Start a Startup. You can ask any questions related to starting a startup.",
+    },
+    {
+      title: "Ask Read Pilot",
+      description:
+        "Input a link, and get a summary of the article. You can also ask questions about the article.",
+    },
+    {
+      title: "Ask The Great CEO Within",
+      description:
+        "This AI trained by the book: The Great CEO Within. You can ask any questions related to the book.",
+    },
+    {
+      title: "Ask Naval Ravikant",
+      description:
+        "This AI trained by all the tweets of Naval Ravikant. You can ask any questions related to life, business, and investing.",
+    },
+    {
+      title: "Ask Elon Musk",
+      description:
+        "This AI trained by all the tweets of Elon Musk. It's an AI version of Elon Musk.",
+    },
+    {
+      title: "Ask Tim Ferriss",
+      description:
+        "This AI trained by all the blogs, tweets, books of Tim Ferriss. You can ask any questions related to life, business, and investing.",
+    },
+  ];
 
   return (
     <Layout>
@@ -81,7 +69,7 @@ export default function Home() {
             >
               <Twitter className="h-5 w-5 text-[#1d9bf0]" />
               <p className="text-sm font-semibold text-[#1d9bf0]">
-                Introducing Read Pilot
+                Introducing Copilot Hub
               </p>
             </a>
             <a
@@ -96,92 +84,47 @@ export default function Home() {
           </motion.div>
 
           <motion.h1
-            className="mt-6 w-[1024px] bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
+            className="mt-6 w-[1024px] text-center font-display text-4xl font-bold tracking-[-0.02em] text-black drop-shadow-sm md:text-7xl md:leading-[5rem]"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
-              Read Online Articles With
+              The AI Assistant Community
               <br />
-              <span className="bg-co bg-gradient-to-r from-blue-500 via-green-600 to-indigo-500 bg-clip-text text-transparent">
-                Intelligence
+              <span className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
+                Building the Future
               </span>
             </Balancer>
           </motion.h1>
           <motion.p
-            className="mt-6 text-center text-gray-500 md:text-2xl"
+            className="mt-6 w-2/3 text-center text-gray-500 md:text-2xl"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
-              Read Pilot analyzes online articles and generate Q&A cards for
-              you.
+              Copilot Hub is an AI-native platform where you can train and
+              fine-tune your LLMs. Create a chatbot with your own data in
+              minutes.
             </Balancer>
           </motion.p>
-
-          <motion.p
-            className="mt-6 w-[1024px] text-center text-xl text-black"
-            variants={FADE_DOWN_ANIMATION_VARIANTS}
-          >
-            <Balancer>
-              Trusted by{" "}
-              <CountingNumbers
-                value={10097}
-                duration={1000}
-                className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent"
-              />{" "}
-              users,{" "}
-              <CountingNumbers
-                value={13951}
-                duration={1000}
-                className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent"
-              />{" "}
-              links have been analyzed.
-            </Balancer>
-          </motion.p>
-
-          <motion.div className="mt-10" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <div className="relative flex w-[35rem] items-center justify-center">
-              <LinkIcon className="insert-y-1 w absolute left-0 my-3 ml-3 w-7 text-gray-500" />
-              <input
-                type="url"
-                placeholder="Input your link"
-                value={url}
-                onChange={(e) => {
-                  setUrl((e.target as HTMLInputElement).value);
-                }}
-                required
-                className="block w-full rounded-2xl border border-gray-200 bg-white p-2 pl-12 text-lg text-gray-600 shadow-md focus:border-black focus:outline-none focus:ring-0"
-              />
-            </div>
-          </motion.div>
 
           <motion.div className="mt-8" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            {!loading && (
-              <button
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
-                onClick={(e) => generateCards(e)}
-              >
-                Start Analyzing →
-              </button>
-            )}
-            {loading && (
-              <button
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
-                disabled
-              >
-                <span>Analyzing </span>
-                <LoadingDots color="grey" />
-              </button>
-            )}
+            <button className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl">
+              Start Building →
+            </button>
           </motion.div>
+
+          <motion.p
+            className="mt-20 w-2/3 text-center text-3xl font-bold text-gray-700"
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+          >
+            <Balancer>Featured Copilots</Balancer>
+          </motion.p>
         </motion.div>
 
-        {showGeneratedCards && (
-          <div className="my-10 grid w-full max-w-screen-xl animate-[slide-down-fade_0.5s_ease-in-out] grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
-            {results.map(({ q, a }) => (
-              <Card key={q} title={q} description={a} />
-            ))}
-          </div>
-        )}
+        <div className="mt-10 grid max-h-screen w-full animate-[slide-down-fade_0.5s_ease-in-out] grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
+          {results.map(({ title, description }) => (
+            <Card key={title} title={title} description={description} />
+          ))}
+        </div>
       </div>
     </Layout>
   );
