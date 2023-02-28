@@ -15,7 +15,7 @@
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",
     "@next/font": "13.1.1",
-    "@prisma/client": "^4.8.1",
+    "@prisma/client": "^4.9.0",
     "@radix-ui/react-popover": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.2",
     "@types/node": "18.11.18",
