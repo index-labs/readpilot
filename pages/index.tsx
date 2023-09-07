@@ -124,13 +124,13 @@ export default function Home() {
             <Balancer>
               Trusted by{" "}
               <CountingNumbers
-                value={10097}
+                value={7451}
                 duration={1000}
                 className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent"
               />{" "}
               users,{" "}
               <CountingNumbers
-                value={13951}
+                value={10219}
                 duration={1000}
                 className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent"
               />{" "}
