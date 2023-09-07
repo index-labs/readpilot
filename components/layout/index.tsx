@@ -44,7 +44,7 @@ export default function Layout({
               height="30"
               className="mr-2 rounded-sm"
             ></Image>
-            <p>Read Pilot</p>
+            <p>阅读助手</p>
           </Link>
           <div>
             <AnimatePresence>
@@ -55,7 +55,7 @@ export default function Layout({
                   target="_blank"
                   {...FADE_IN_ANIMATION_SETTINGS}
                 >
-                  Subscribe
+                  登录
                 </motion.a>
               ) : (
                 <UserDropdown />

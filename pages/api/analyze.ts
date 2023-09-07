@@ -16,7 +16,7 @@ const handler = async (req: NextRequest) => {
   const prompt = `
   Generate a list of thought provoking discussion questions about the URL, and return the answers of these questions with the evidence.
 
-  Please generate a JSON list object with the following properties: q and a. q and a should be string. q is the question. a is the answer.
+  Please generate a JSON list object with the following properties: q and a. q and a should be string. q is the question. a is the answer.please use Chinese as Response.
 
   The URL is: ${url}
   `;

@@ -69,7 +69,7 @@ export default function Home() {
             },
           }}
         >
-          <motion.div
+          {/*<motion.div
             className="flex justify-between space-x-5"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
@@ -93,18 +93,17 @@ export default function Home() {
               <Github className="h-5 w-5" />
               <p className="text-sm font-semibold">Star on GitHub</p>
             </a>
-          </motion.div>
+          </motion.div>*/}
 
           <motion.h1
             className="mt-6 w-[1024px] bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
-              Read Online Articles With
-              <br />
               <span className="bg-co bg-gradient-to-r from-blue-500 via-green-600 to-indigo-500 bg-clip-text text-transparent">
-                Intelligence
+                智能阅读
               </span>
+              在线文章
             </Balancer>
           </motion.h1>
           <motion.p
@@ -112,8 +111,7 @@ export default function Home() {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
-              Read Pilot analyzes online articles and generate Q&A cards for
-              you.
+              让AI帮你阅读在线文章，并生成问答卡片。
             </Balancer>
           </motion.p>
 
@@ -122,11 +120,11 @@ export default function Home() {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <Balancer>
-              Trusted by{" "}
+              已有{" "}
               <CountingNumbers value={7173} duration={1000} className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent" />{" "}
-              users, {" "}
+              用户使用，已分析 {" "}
               <CountingNumbers value={9830} duration={1000} className="bg-gradient-to-r from-red-600 to-amber-600 bg-clip-text font-bold text-transparent" />{" "}
-              links have been analyzed.
+              个链接。
             </Balancer>
           </motion.p>
 
@@ -135,7 +133,7 @@ export default function Home() {
               <LinkIcon className="insert-y-1 w absolute left-0 my-3 ml-3 w-7 text-gray-500" />
               <input
                 type="url"
-                placeholder="Input your link"
+                placeholder="输入您要阅读的链接"
                 value={url}
                 onChange={(e) => {
                   setUrl((e.target as HTMLInputElement).value);
@@ -152,7 +150,7 @@ export default function Home() {
                 className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
                 onClick={(e) => generateCards(e)}
               >
-                Start Analyzing →
+                开始分析 →
               </button>
             )}
             {loading && (
@@ -160,7 +158,7 @@ export default function Home() {
                 className="rounded-full border border-black bg-black p-1.5 px-4 text-lg text-white transition-all hover:bg-white hover:text-black sm:text-sm md:text-xl"
                 disabled
               >
-                <span>Analyzing </span>
+                <span>分析 </span>
                 <LoadingDots color="grey" />
               </button>
             )}
